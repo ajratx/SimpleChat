@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Messaging.Database.Sqlite", "External\SimpleChat.Messaging.Database.Sqlite\SimpleChat.Messaging.Database.Sqlite.csproj", "{51E7F831-66BD-4B65-A307-DBCF4E45E748}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{E6CB8449-73E2-481F-B827-41EC24903943}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{5FA5E452-4BC0-478C-9174-CAA09470DD04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Messaging", "Business\SimpleChat.Messaging\SimpleChat.Messaging.csproj", "{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{71CBA1B2-BF10-48CD-ACAD-5C9888BDA0A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Messaging.Database.Sqlite.Test", "Test\SimpleChat.Messaging.Database.Sqlite.Test\SimpleChat.Messaging.Database.Sqlite.Test.csproj", "{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{816EA84F-AA73-4A71-8FFD-D37B4D688822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Logger", "Infrastructure\SimpleChat.Logger\SimpleChat.Logger.csproj", "{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Logger.Nlog", "Infrastructure\SimpleChat.Logger.NLog\SimpleChat.Logger.Nlog.csproj", "{E68103EB-5317-4A04-8AF6-8EABCE27A6A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Messaging.Database", "External\SimpleChat.Messaging.Database\SimpleChat.Messaging.Database.csproj", "{88CB5097-4CE3-401A-B932-B44B722FBD83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Logger.Nlog.Test", "SimpleChat.Logger.Nlog.Test\SimpleChat.Logger.Nlog.Test.csproj", "{D19ECE5A-5109-4006-A0F8-0B525819EEC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E7F831-66BD-4B65-A307-DBCF4E45E748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E7F831-66BD-4B65-A307-DBCF4E45E748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E7F831-66BD-4B65-A307-DBCF4E45E748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E7F831-66BD-4B65-A307-DBCF4E45E748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E68103EB-5317-4A04-8AF6-8EABCE27A6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E68103EB-5317-4A04-8AF6-8EABCE27A6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68103EB-5317-4A04-8AF6-8EABCE27A6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68103EB-5317-4A04-8AF6-8EABCE27A6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CB5097-4CE3-401A-B932-B44B722FBD83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CB5097-4CE3-401A-B932-B44B722FBD83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CB5097-4CE3-401A-B932-B44B722FBD83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CB5097-4CE3-401A-B932-B44B722FBD83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19ECE5A-5109-4006-A0F8-0B525819EEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19ECE5A-5109-4006-A0F8-0B525819EEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19ECE5A-5109-4006-A0F8-0B525819EEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19ECE5A-5109-4006-A0F8-0B525819EEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{51E7F831-66BD-4B65-A307-DBCF4E45E748} = {E6CB8449-73E2-481F-B827-41EC24903943}
+		{7B0FFDB1-A764-47D1-92E3-C84B74D0A8E8} = {5FA5E452-4BC0-478C-9174-CAA09470DD04}
+		{E4EC2266-1A36-4E23-AAFA-BD9A22C996FE} = {71CBA1B2-BF10-48CD-ACAD-5C9888BDA0A6}
+		{A0EA68EF-F1B3-49AF-A10B-3873FB3ED576} = {816EA84F-AA73-4A71-8FFD-D37B4D688822}
+		{E68103EB-5317-4A04-8AF6-8EABCE27A6A9} = {816EA84F-AA73-4A71-8FFD-D37B4D688822}
+		{88CB5097-4CE3-401A-B932-B44B722FBD83} = {E6CB8449-73E2-481F-B827-41EC24903943}
+		{D19ECE5A-5109-4006-A0F8-0B525819EEC0} = {71CBA1B2-BF10-48CD-ACAD-5C9888BDA0A6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D4F3B2A-4438-4325-80DB-3DC50F04BC67}
+	EndGlobalSection
+EndGlobal
