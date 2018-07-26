@@ -1,0 +1,23 @@
+﻿@page
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            Пользователь:
+            <br />
+            Сообщение:<input type="text" id="messageInput" />
+            <input type="button" id="sendButton" value="Отправить" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/simpleChat.js"></script>
