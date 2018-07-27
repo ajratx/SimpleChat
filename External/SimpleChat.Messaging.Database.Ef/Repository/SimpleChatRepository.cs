@@ -2,24 +2,25 @@
 {
     using System;
 
-    using Microsoft.EntityFrameworkCore;
-
     using SimpleChat.Messaging.Base;
     using SimpleChat.Messaging.Database.Context;
 
     public abstract class SimpleChatRepository<TEntity, TKey> : BaseRepository<TEntity, TKey>
         where TEntity : class
     {
-        private SimpleChatContext simpleChatContext;
 
         private bool disposed;
 
         protected SimpleChatRepository(IDatabaseSettings databaseSettings) : base(databaseSettings)
         {
+            SimpleChatContext = CreateSimpleChatContext();
+            if (SimpleChatContext == null)
+                throw new InvalidOperationException("Data base context can't be null");
+
+            SimpleChatContext.Database.EnsureCreated();
         }
 
-        protected SimpleChatContext SimpleChatContext 
-            => simpleChatContext ?? (simpleChatContext = CreateSimpleChatContext());
+        protected SimpleChatContext SimpleChatContext { get; }
 
         public override TEntity GetById(TKey id)
         {
@@ -68,7 +69,7 @@
         {
             if (disposed) return;
 
-            if (disposing) simpleChatContext?.Dispose();
+            if (disposing) SimpleChatContext.Dispose();
 
             disposed = true;
         }

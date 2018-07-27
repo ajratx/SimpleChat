@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
     using SimpleChat.Hubs;
@@ -14,11 +15,17 @@
 
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+            => Configuration = configuration;
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityCore<User>();
             services.AddScoped<IUserStore<User>, UserStore>();
-            services.AddSingleton<IDatabaseSettings>(new DatabaseSettings { ConnectionString = "" });
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddSingleton<IDatabaseSettings>(new DatabaseSettings { ConnectionString = "C:\\Logs\\test.db3" });
 
             services.AddAuthentication();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

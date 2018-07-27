@@ -93,7 +93,7 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
             simpleChatContext = new SqliteSimpleChatContext(databaseSettings);
             simpleChatContext.Database.EnsureCreated();
 
-            var user = new User { Name = "admin" };
+            var user = new User { Name = "admin", Email = "admin@mail.org" };
             AddItem(user);
 
             var message = new Message { UserId = 1, Text = "Message text" };
