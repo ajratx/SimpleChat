@@ -24,7 +24,7 @@
         {
             services.AddIdentityCore<User>();
             services.AddScoped<IUserStore<User>, UserStore>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<IUserRepository, UserRepository>();
             services.AddSingleton<IDatabaseSettings>(new DatabaseSettings { ConnectionString = "C:\\Logs\\test.db3" });
 
             services.AddAuthentication();

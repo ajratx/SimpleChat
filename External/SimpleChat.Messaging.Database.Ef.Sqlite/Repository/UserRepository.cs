@@ -1,8 +1,9 @@
 ﻿namespace SimpleChat.Messaging.Database.Ef.Repository
 {
+    using Microsoft.EntityFrameworkCore;
+
     using SimpleChat.Messaging.Base;
     using SimpleChat.Messaging.Database.Context;
-    using SimpleChat.Messaging.Database.Sqlite.Ef.Context;
     using SimpleChat.Messaging.Entities;
 
     public sealed class UserRepository : SimpleChatRepository<User, int>, IUserRepository
@@ -16,8 +17,5 @@
             CheckDisposed();
             return SimpleChatContext.Set<User>().Find(email);
         }
-
-        protected override SimpleChatContext CreateSimpleChatContext()
-            => new SqliteSimpleChatContext(DatabaseSettings);
     }
 }

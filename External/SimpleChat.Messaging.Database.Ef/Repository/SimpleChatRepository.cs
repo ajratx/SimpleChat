@@ -1,22 +1,22 @@
 ﻿namespace SimpleChat.Messaging.Database.Ef.Repository
 {
     using System;
-
+    using Microsoft.EntityFrameworkCore;
     using SimpleChat.Messaging.Base;
     using SimpleChat.Messaging.Database.Context;
 
     public abstract class SimpleChatRepository<TEntity, TKey> : BaseRepository<TEntity, TKey>
         where TEntity : class
     {
-
         private bool disposed;
 
         protected SimpleChatRepository(IDatabaseSettings databaseSettings) : base(databaseSettings)
         {
-            SimpleChatContext = CreateSimpleChatContext();
-            if (SimpleChatContext == null)
-                throw new InvalidOperationException("Data base context can't be null");
+            var dbContextOptions = GetDbContextOptions();
+            if (dbContextOptions == null)
+                throw new InvalidOperationException("Data base context options can't be null");
 
+            SimpleChatContext = new SimpleChatContext(dbContextOptions);
             SimpleChatContext.Database.EnsureCreated();
         }
 
@@ -63,7 +63,7 @@
             if (disposed) throw new ObjectDisposedException(GetType().FullName);
         }
 
-        protected abstract SimpleChatContext CreateSimpleChatContext();
+        protected abstract DbContextOptions<SimpleChatContext> GetDbContextOptions();
 
         protected void Dispose(bool disposing)
         {

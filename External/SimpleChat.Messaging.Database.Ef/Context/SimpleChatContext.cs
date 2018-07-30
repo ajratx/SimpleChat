@@ -8,14 +8,11 @@
     using SimpleChat.Messaging.Database.Ef.EntityTypeConfiguration;
     using SimpleChat.Messaging.Entities;
 
-    public abstract class SimpleChatContext : DbContext
+    public sealed class SimpleChatContext : DbContext
     {
-        protected readonly IDatabaseSettings DatabaseSettings;
-
-        protected SimpleChatContext(IDatabaseSettings databaseSettings)
+        public SimpleChatContext(DbContextOptions<SimpleChatContext> dbContextOptions)
+            : base(dbContextOptions)
         {
-            CheckSettings(databaseSettings);
-            DatabaseSettings = databaseSettings;
         }
 
         public DbSet<User> Users { get; set; }
