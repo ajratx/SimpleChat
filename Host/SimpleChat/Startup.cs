@@ -10,7 +10,7 @@
     using SimpleChat.Hubs;
     using SimpleChat.Infrastructure;
     using SimpleChat.Messaging.Base;
-    using SimpleChat.Messaging.Database.Ef.Repository;
+    using SimpleChat.Messaging.Database.Ef.Sqlite.Repository;
     using SimpleChat.Messaging.Entities;
 
     public class Startup
@@ -24,8 +24,8 @@
         {
             services.AddIdentityCore<User>();
             services.AddScoped<IUserStore<User>, UserStore>();
-            //services.AddScoped<IUserRepository, UserRepository>();
-            services.AddSingleton<IDatabaseSettings>(new DatabaseSettings { ConnectionString = "C:\\Logs\\test.db3" });
+            services.AddScoped<IUserRepository, UserSqliteRepository>();
+            services.AddSingleton<IDatabaseSettings>(new DatabaseSettings { ConnectionString = "Filename=C:\\Logs\\test.db3" });
 
             services.AddAuthentication();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

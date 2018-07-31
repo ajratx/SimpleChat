@@ -13,6 +13,8 @@
     {
         private readonly IUserRepository userRepository;
 
+        private bool disposed;
+
         public UserStore(IUserRepository userRepository)
         {
             CheckRepository(userRepository);
@@ -27,12 +29,16 @@
 
         public Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            userRepository.Remove(user);
+            return Task.FromResult(IdentityResult.Success);
         }
 
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var parseResult = int.TryParse(userId, out int id);
+            if (!parseResult) return null;
+
+            return Task.FromResult(userRepository.GetById(id));
         }
 
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
@@ -74,38 +80,18 @@
         {
         }
 
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects).
-                }
+            if (disposed) return;
 
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
+            if (disposing) (userRepository as IDisposable)?.Dispose();
 
-                disposedValue = true;
-            }
+            disposed = true;
         }
 
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~UserStore() {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
-
-        // This code added to correctly implement the disposable pattern.
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
@@ -122,6 +108,5 @@
         {
             throw new System.NotImplementedException();
         }
-        #endregion
     }
 }

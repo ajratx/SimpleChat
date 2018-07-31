@@ -1,14 +1,12 @@
-﻿namespace SimpleChat.Messaging.Database.Ef.Repository
+﻿namespace SimpleChat.Messaging.Database.Ef.Sqlite.Repository
 {
-    using Microsoft.EntityFrameworkCore;
-
     using SimpleChat.Messaging.Base;
     using SimpleChat.Messaging.Database.Context;
     using SimpleChat.Messaging.Entities;
 
-    public sealed class UserRepository : SimpleChatRepository<User, int>, IUserRepository
+    public sealed class UserSqliteRepository : SqliteSimpleChatRepository<User, int>, IUserRepository
     {
-        public UserRepository(IDatabaseSettings databaseSettings) : base(databaseSettings)
+        public UserSqliteRepository(IDatabaseSettings databaseSettings) : base(databaseSettings)
         {
         }
 

@@ -6,7 +6,7 @@
     using SimpleChat.Messaging.Database.Context;
     using SimpleChat.Messaging.Database.Ef.Repository;
 
-    public sealed class SqliteSimpleChatRepository<TEntity, TKey> : SimpleChatRepository<TEntity, TKey>
+    public class SqliteSimpleChatRepository<TEntity, TKey> : SimpleChatRepository<TEntity, TKey>
         where TEntity : class
     {
         public SqliteSimpleChatRepository(IDatabaseSettings databaseSettings)

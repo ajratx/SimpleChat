@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Compile Remove="Repository\MessageRepository.cs" />
-    <Compile Remove="Repository\UserRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

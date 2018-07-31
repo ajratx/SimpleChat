@@ -4,30 +4,25 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
     using System.IO;
 
     using Microsoft.EntityFrameworkCore;
-    using Moq;
 
-    using SimpleChat.Messaging.Base;
-    using SimpleChat.Messaging.Database.Sqlite.Ef.Context;
+    using SimpleChat.Messaging.Database.Context;
     using SimpleChat.Messaging.Entities;
 
     using Xunit;
 
-    public class SqliteSimpleChatContextTests : IDisposable
+    public class SimpleChatContextTests : IDisposable
     {
-        private readonly string databaseFile;
+        private readonly DbContextOptionsBuilder<SimpleChatContext> dbContextOptionsBuilder;
 
-        private IDatabaseSettings databaseSettings;
+        private SimpleChatContext simpleChatContext;
 
-        private SqliteSimpleChatContext simpleChatContext;
-
-        public SqliteSimpleChatContextTests()
+        public SimpleChatContextTests()
         {
-            databaseFile = Path.Combine(Environment.CurrentDirectory, "MessagingDB.db3");
+            var databaseFilePath = Path.Combine(Environment.CurrentDirectory, "MessagingDB.db3");
+            dbContextOptionsBuilder = new DbContextOptionsBuilder<SimpleChatContext>();
+            dbContextOptionsBuilder.UseSqlite($"Filename={databaseFilePath}");
 
-            databaseSettings = Mock.Of<IDatabaseSettings>();
-            databaseSettings.ConnectionString = databaseFile;
-
-            if (File.Exists(databaseFile)) File.Delete(databaseFile);
+            if (File.Exists(databaseFilePath)) File.Delete(databaseFilePath);
         }
 
         public void Dispose() => simpleChatContext?.Dispose();
@@ -35,28 +30,7 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
         [Fact]
         public void Constructor_NullSettings_ExceptionThrown()
         {
-            Assert.Throws<ArgumentNullException>(() => simpleChatContext = new SqliteSimpleChatContext(null));
-        }
-
-        [Fact]
-        public void Constructor_ConnenctionStringIsNull_ExceptionThrown()
-        {
-            databaseSettings.ConnectionString = null;
-            Assert.Throws<ArgumentException>(() => simpleChatContext = new SqliteSimpleChatContext(databaseSettings));
-        }
-
-        [Fact]
-        public void Constructor_ConnenctionStringIsEmpty_ExceptionThrown()
-        {
-            databaseSettings.ConnectionString = string.Empty;
-            Assert.Throws<ArgumentException>(() => simpleChatContext = new SqliteSimpleChatContext(databaseSettings));
-        }
-
-        [Fact]
-        public void Constructor_ConnenctionStringIsWhiteSpace_ExceptionThrown()
-        {
-            databaseSettings.ConnectionString = " ";
-            Assert.Throws<ArgumentException>(() => simpleChatContext = new SqliteSimpleChatContext(databaseSettings));
+            Assert.Throws<ArgumentNullException>(() => simpleChatContext = new SimpleChatContext(null));
         }
 
         [Fact]
@@ -64,16 +38,15 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
         {
             var userName = "admin";
 
-            simpleChatContext = new SqliteSimpleChatContext(databaseSettings);
+            simpleChatContext = new SimpleChatContext(dbContextOptionsBuilder.Options);
             simpleChatContext.Database.EnsureCreated();
 
-            var user = new User { Name = userName };
+            var user = new User { Name = userName, Email = "admin@mail.org" };
             AddItem(user);
 
             var userFromDb = simpleChatContext.Users.Find(1);
             Assert.NotNull(userFromDb);
             Assert.Equal(userName, userFromDb.Name);
-
         
             UpdateItem(userFromDb);
 
@@ -90,7 +63,7 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
         [Fact]
         public void AddGetUpdateGetDeleteGetMessage()
         {
-            simpleChatContext = new SqliteSimpleChatContext(databaseSettings);
+            simpleChatContext = new SimpleChatContext(dbContextOptionsBuilder.Options);
             simpleChatContext.Database.EnsureCreated();
 
             var user = new User { Name = "admin", Email = "admin@mail.org" };
@@ -130,7 +103,6 @@ namespace SimpleChat.Messaging.Database.Sqlite.Test
         private void AttachItemAndSaveChanges<T>(T item, EntityState entityState)
             where T : class
         {
-            simpleChatContext.Attach(item);
             simpleChatContext.Entry(item).State = entityState;
             simpleChatContext.SaveChanges();
         }
