@@ -73,11 +73,28 @@
 
         public Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            userRepository.Update(user);
+            return Task.FromResult(IdentityResult.Success);
         }
 
-        private void CheckRepository(IUserRepository userRepository)
+        public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
         {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -89,24 +106,10 @@
             disposed = true;
         }
 
-        public void Dispose()
+        private static void CheckRepository(IUserRepository userRepository)
         {
-            Dispose(true);
-        }
-
-        public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
-        {
-            throw new System.NotImplementedException();
+            if (userRepository == null)
+                throw new ArgumentNullException(nameof(userRepository));
         }
     }
 }
